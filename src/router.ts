@@ -1,5 +1,5 @@
 import {Router, Request, Response} from "express"
-import { createMovie, getMovieById, getAllMovies } from "./controllers/movieControllers"
+import { createMovie, getMovieById, getAllMovies, removeMovie} from "./controllers/movieControllers"
 
 import {validate} from "./middlewares/handleValidation"
 import { movieCreateValidation } from "./middlewares/movieValidation"
@@ -12,3 +12,4 @@ export default router.get('/test', (req: Request, res: Response) => {
 .post("/movie", movieCreateValidation(), validate, createMovie)
 .get("/movie/:id", getMovieById)
 .get("/movies", getAllMovies)
+.delete("/movie/:id", removeMovie)
