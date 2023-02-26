@@ -1,5 +1,5 @@
 import {Router, Request, Response} from "express"
-import { createMovie, getMovieById, getAllMovies, removeMovie} from "./controllers/movieControllers"
+import { createMovie, getMovieById, getAllMovies, removeMovie, updateMovie} from "./controllers/movieControllers"
 
 import {validate} from "./middlewares/handleValidation"
 import { movieCreateValidation } from "./middlewares/movieValidation"
@@ -13,3 +13,4 @@ export default router.get('/test', (req: Request, res: Response) => {
 .get("/movie/:id", getMovieById)
 .get("/movies", getAllMovies)
 .delete("/movie/:id", removeMovie)
+.patch("/movie/:id", movieCreateValidation(), validate, updateMovie) //Patch permite atualizar apenas uma entrada, sem tornar vazias aquelas não repassadas. No update, se passar apenas um dado para atualizar, os demais ficarão em branco.
